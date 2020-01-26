@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <list>
 #include <random>
 #include "SDL.h"
 #include "controller.h"
@@ -14,10 +15,11 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
+  bool isFoodCeil(int x, int y);
 
  private:
   Snake snake;
-  SDL_Point food;
+  std::list<SDL_Point> foods;
 
   std::random_device dev;
   std::mt19937 engine;
