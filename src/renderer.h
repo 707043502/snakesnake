@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <list>
+#include <vector>
 #include "SDL.h"
 #include "snake.h"
 
@@ -11,7 +11,7 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Snake const snake, std::list<SDL_Point> const &food);
+  void Render(std::vector<Snake> const & snake, std::vector<SDL_Point> const &food);
   void UpdateWindowTitle(int score, int fps);
 
  private:

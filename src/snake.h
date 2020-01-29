@@ -19,6 +19,17 @@ class Snake {
   void GrowBody();
   bool SnakeCell(int x, int y);
 
+  void  reset(){
+    std::vector<SDL_Point> temp;
+    body.swap(temp);
+    speed = 0.1f;
+    alive = true;
+    size = 1;
+    head_x = grid_width / 2;
+    head_y = grid_height / 2;
+    direction = Direction::kUp;
+  }
+
   Direction direction = Direction::kUp;
 
   float speed{0.1f};
@@ -27,6 +38,8 @@ class Snake {
   float head_x;
   float head_y;
   std::vector<SDL_Point> body;
+
+
 
  private:
   void UpdateHead();

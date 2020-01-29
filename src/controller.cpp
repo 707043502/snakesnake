@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "snake.h"
+#include <cstdlib>
 
 void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
                                  Snake::Direction opposite) const {
@@ -9,7 +10,8 @@ void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
   return;
 }
 
-void Controller::HandleInput(bool &running, Snake &snake) const {
+
+void PlayerController::HandleInput(bool &running, Snake &snake) const {
   SDL_Event e;
   while (SDL_PollEvent(&e)) {
     if (e.type == SDL_QUIT) {
@@ -37,5 +39,31 @@ void Controller::HandleInput(bool &running, Snake &snake) const {
           break;
       }
     }
+  }
+}
+
+void RobotController::HandleInput(bool &running, Snake &snake) const {
+  int key = rand() % 900 /10;
+  
+  switch (key) {
+    case 0:
+      ChangeDirection(snake, Snake::Direction::kUp,
+                      Snake::Direction::kDown);
+      break;
+
+    case 1:
+      ChangeDirection(snake, Snake::Direction::kLeft,
+                      Snake::Direction::kRight);
+      break;
+
+    case 2:
+      ChangeDirection(snake, Snake::Direction::kRight,
+                      Snake::Direction::kLeft);
+      break;
+
+    // case 3:
+    //   ChangeDirection(snake, Snake::Direction::kRight,
+    //                   Snake::Direction::kLeft);
+    //   break;
   }
 }
